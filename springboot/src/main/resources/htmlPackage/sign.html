@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+    input::-webkit-input-placeholder{
+        color: #fff;
+    }
+    body{
+        /*background-color: #000;*/
+        background: url("images/lswl2.jpg") no-repeat center;
+        background-size:100% 100%;
+        background-attachment: fixed;
+
+    }
+    .miaoshu{
+        color: #fff;
+        margin: 10px auto;
+        width: 300px;
+    }
+
+    .input2{
+        border-left: 0px;
+        border-top: 0px;
+        border-right: 0px;
+        background-color: rgba(244,244,244,0);
+        border-bottom: 1px solid #fff;
+        margin: 10px auto;
+        height: 30px;
+        width: 200px;
+        color: #fff;
+
+        /*透明度*/
+        opacity: 0.5;
+        /*点击时文本框的选中标记*/
+        outline: none;
+        transition: 1s;
+
+    }
+
+
+    .input3{
+        border-left: 0px;
+        border-top: 0px;
+        border-right: 0px;
+        background-color: rgba(244,244,244,0);
+        border-bottom: 1px solid #fff;
+        margin: 10px auto;
+        height: 30px;
+        width: 120px;
+        color: #fff;
+
+        /*透明度*/
+        opacity: 0.5;
+        /*点击时文本框的选中标记*/
+        outline: none;
+        transition: 1s;
+
+    }
+
+    .input3:focus{
+        margin: 20px 0px;
+        /*放大*/
+        transform: scale(1.2,1.4);
+    }
+
+
+    .input4{
+        border-left: 0px;
+        border-top: 0px;
+        border-right: 0px;
+        background-color: rgba(244,244,244,0);
+        border-bottom: 1px solid #fff;
+        margin: 10px 96px;
+        height: 30px;
+        width:51%;
+        color: #fff;
+
+        /*透明度*/
+        opacity: 0.5;
+        /*点击时文本框的选中标记*/
+        outline: none;
+        transition: 1s;
+
+    }
+
+    .input4:focus{
+        margin: 20px 96px;
+        /*放大*/
+        transform: scale(1.2,1.4);
+    }
+
+
+    .input2:focus{
+        margin: 20px 10px;
+        /*放大*/
+        transform: scale(1.2,1.4);
+    }
+
+    .sign{
+        background-color:rgba(244,244,244,0.2);
+        margin: 120px auto;
+        /*padding:10px 50px ;*/
+        height:560px;
+        width: 400px;
+        border-radius:0px 25px 25px 25px;
+        opacity: 1;
+    }
+
+    .input{
+        margin: 10px 80px;
+        text-align: center;
+        color: #f00;
+        width:60%
+    }
+    a{
+        font-size: 10px;
+    }
+    .sign-logo{
+        font-size: 60px;
+        margin: 20px auto;
+        color: #f00;
+        text-align: center;
+    }
+
+    .btn{
+        border-radius: 10px;
+        margin: 5px 160px;
+        width: 80px;
+        height: 30px;
+        background-color: #333;
+        opacity: 0.9;
+        color: #fff;
+        border: 1px #fff solid;
+    }
+    .btn:hover{
+        cursor: pointer;
+        background-color: rgba(100,100,100,1);
+    }
+
+    .return{
+        width: 30px;
+        height: 30px;
+        background: url("icon/returnicon.jpeg") no-repeat center;
+        background-size:100% 100%;
+        /*background-attachment: fixed;*/
+        opacity: 0.15;
+
+    }
+
+    .return:hover{
+        cursor: pointer;
+        opacity: 0.3;
+    }
+
+    .btn1{
+        margin: 0px;
+        background: rgba(244,244,244,0);
+        border: solid 1px #ccc;
+        height: 33px;
+        color: #ccc;
+        outline: none;
+    }
+    
+    .btn1:hover{
+        cursor: pointer;
+        background-color: rgba(100,100,100,1);
+    }
+
+    .btn1:active{
+        transform: scale(0.8);
+    }
+
+
+
+
+</style>
+
+<div class = "sign" id="sign">
+    <input class="return" type="submit" value="" onclick="window.location.href='loginin.html'">
+    <!--        <form action="" id="loginForm" class="fh5co-form animate-box" onsubmit="return false" method="post">-->
+    <p class="sign-logo">sign</p>
+    <!--            <div class = "input">-->
+    <p class="miaoshu">请在下面输入你的邮箱地址，我们将会发一封带有验证码的邮件到你填写的邮箱中.</p>
+    <p class="input">请输入你的邮箱: <input class="input2" id="email" type="text" name="email" placeholder="email" autocomplete="off" value="SASAKPANJANG. RT 004 RW 002 Jl AMD Raya. Jl Masjid SUKASARI  CIDOLOG  KABUPATEN CIAMIS  PROVINSI JAWA BARAT"/></p>
+    <p style="margin: 0px 46px ">
+       <input class="input3" id="yzm" type="text" name="yzm" placeholder="请输入验证码" style="margin: 10px 0px 10px 50px" autocomplete="off"/>
+       <input type="button" id="sendbtn" onclick="sendEmail(this)" class="btn1" value="发送验证码" >
+    </p>
+    <input class="input4" id="pwd" type="password" name="yzm" placeholder="请输入密码"  autocomplete="off"/>
+    <div>
+        <input class="input4" id="repwd" type="password" name="yzm" placeholder="再次输入密码"  autocomplete="off"/>
+    </div>
+        <!--            </div>-->
+
+    <input type="button" onclick="submit()" value="确定" class="btn" />
+
+    <!--        </form>-->
+</div>
+
+
+<script>
+    function getBrowser() { //判断浏览器是在android系统上还是在ios系统上
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            // window.location.href = "sign.html"; //移动端页面
+            document.getElementById("sign").style.width = "100%";
+            document.getElementById("sign").style.height = "100%"
+        } else {
+            // console.log(document.getElementById("email"));
+            // document.getElementById("sign").style.margin = "10px auto";
+            // document.getElementById("sign").style.width = "100%";
+            // document.getElementById("sign").style.height = "50%"
+
+        }
+
+    }
+
+    //在加载的时候进行操作，使得在pc浏览器和手机浏览器的css不同
+    window.onload = function () {
+        getBrowser();
+    };
+
+    function canSend() {
+        document.getElementById("sendbtn").style.pointerEvents = "";
+    }
+
+    var countdown=60;
+    var sendbtnla = document.getElementById("sendbtn");
+    function settime() {
+        if (countdown == 0) {
+            sendbtnla.removeAttribute("disabled");
+            sendbtnla.value="发送验证码";
+            countdown = 60;
+        } else {
+            sendbtnla.setAttribute("disabled", true);
+            sendbtnla.value="重新发送(" + countdown + ")";
+            countdown--;
+            setTimeout(function() {
+                settime()
+            },1000)
+        }
+
+
+    }
+
+
+
+
+    function sendEmail() {
+        // var myData = {
+        //     "username":document.getElementById("username").value,
+        //     "password":document.getElementById("password").value,
+        // };
+        var sendto = document.getElementById("email").value;
+        var sendbtn = document.getElementById("sendbtn");
+        console.log("lalala"+document.getElementById("email"));
+        // sendbtn.disabled = 'disabled';
+        // setTimeout(function() {
+        //     $(".btn").removeAttr("disabled")
+        // }, 5000);//5秒后才能点击
+        if(sendto != null && sendto != '') {
+            let checkEmail = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+            var isemail = checkEmail.test(sendto)
+            if(isemail == true){
+
+
+                // document.getElementById("sendbtn").style.pointerEvents = "none";
+                // setTimeout (canSend,10000);
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/sendEmail/" + sendto,
+                    // data: JSON.stringify(myData),
+                    contentType: "application/json;charset=UTF-8",
+                    success: function (data) {
+                        var jsonData = JSON.stringify(data);// 转成JSON格式
+                        console.log(jsonData)
+                        var obj = eval('(' + jsonData + ')');
+                        console.log("djld:" + obj.err);
+
+                        // document.write(result);
+                        if (obj.err == 0) {
+                            alert("邮件已发送，请在邮箱中查收")
+                            settime()
+
+                        }
+                        else if(obj.err == 1){
+                            alert("该邮箱账户以及注册过");
+                        }
+
+                    },
+                    error: function () {
+                        alert("send mail error");
+                    }
+                });
+
+            }
+            else
+            {
+                console.log("邮箱格式错误");
+                alert("邮箱格式错误");
+            }
+        }
+        else
+        {
+            console.log("请输入邮箱");
+            alert("请输入邮箱");
+        }
+
+    }
+
+
+
+    function submit() {
+
+        var sendto = document.getElementById("email").value;
+        var yzm  = document.getElementById("yzm").value;
+        var password = document.getElementById("pwd").value;
+        var repassword = document.getElementById("repwd").value;
+
+        var sign = {
+            "email":sendto,
+            "password":password,
+            "yzm":yzm
+        };
+        if(sendto != null && sendto != '') {
+            let checkEmail = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+            var isemail = checkEmail.test(sendto)
+            if(isemail == true) {
+                if (yzm != null && yzm != '' && password != null && password != '' && repassword != null && repassword != '') {
+                    if (repassword == password) {
+                        $.ajax({
+                            type: "post",
+                            url: "http://localhost:8080/sign",
+                            data: JSON.stringify(sign),
+                            contentType: "application/json;charset=UTF-8",
+                            success: function (data) {
+                                var jsonData = JSON.stringify(data);// 转成JSON格式
+                                console.log(jsonData)
+                                var obj = eval('(' + jsonData + ')');
+                                console.log("djld:" + obj.number);
+
+                                // document.write(result);
+                                if (obj.number == 1) {
+                                    // window.location.href = "signin.html";
+                                    alert("nice")
+                                }
+                            },
+                            error: function () {
+                                document.write("sign error");
+                            }
+                        });
+                    } else {
+                        alert("两次输入的密码不一致");
+                    }
+                }else{
+                    alert("验证码或者密码不能为空")
+                }
+            }else{
+                console.log("邮箱格式错误");
+                alert("邮箱格式错误");
+            }
+        }
+        else
+        {
+            console.log("请输入邮箱");
+            alert("请输入邮箱");
+        }
+
+    }
+
+</script>
+</body>
+
+</html>

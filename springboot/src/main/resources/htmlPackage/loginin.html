@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+
+    input::-webkit-input-placeholder{
+        color: #000;
+    }
+    body{
+
+        background: url("images/lswl.jpeg") no-repeat center ;
+        background-size:100% 100%;
+        background-attachment: fixed;
+
+    }
+
+    .input2{
+        border-left: 0px;
+        border-top: 0px;
+        border-right: 0px;
+        background-color: rgba(244,244,244,0);
+        border-bottom: 1px solid #000;
+
+        /*透明度*/
+        opacity: 0.5;
+        /*点击时文本框的选中标记*/
+        outline: none;
+        transition: 1s;
+
+    }
+
+    .input2:focus{
+        margin: 10px 0px;
+        /*放大*/
+        transform: scale(1.2,1.4);
+    }
+
+    .login{
+        background-color:rgba(244,244,244,0.4);
+        margin: 200px auto;
+        padding:10px 50px ;
+        height:300px;
+        width: 300px;
+        border-radius: 25px;
+        opacity: 0;
+        transition: 3s;
+    }
+    .login:hover{
+        transform: scale(1.1,1.1);
+        opacity: 1;
+    }
+    .input{
+        margin: 10px 60px;
+        text-align: center;
+    }
+    a{
+        font-size: 10px;
+    }
+    .login-logo{
+        font-size: 40px;
+        margin: 20px auto;
+        color: #f00;
+        text-align: center;
+    }
+
+    .btn{
+        border-radius: 10px;
+        margin: 5px 104px;
+        width: 80px;
+        height: 30px;
+        background-color: rgba(200,200,200,0.4);
+        opacity: 0.9;
+    }
+    .btn:hover{
+        cursor: pointer;
+        background-color: rgba(155,155,155,1);
+    }
+
+    .sign{
+        margin: 0px 50px;
+        float: left;
+        font-size: 13px;
+    }
+
+    .forgetpwd{
+        margin: 0px 50px;
+        float: right;
+        font-size: 13px;
+    }
+
+</style>
+<script>
+    var jsondata
+    function login() {
+        var emailla = document.getElementById("email").value;
+        var passwordla = document.getElementById("password").value;
+
+        //带确定按钮弹框 alert
+        //带确定和取消按钮弹框 confirm
+        //带输入框弹框 prompt
+        var myData = {
+            "email":document.getElementById("email").value,
+            "password":document.getElementById("password").value,
+        };
+        if(emailla != "" && emailla != null && passwordla != "" && passwordla != null ) {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/login",
+                data: JSON.stringify(myData),
+                contentType: "application/json;charset=UTF-8",
+                success: function (data) {
+                    var jsonData = JSON.stringify(data);// 转成JSON格式
+                    console.log(jsonData)
+                    var obj = eval('(' + jsonData + ')');
+                    console.log("djld:" + obj.number);
+
+                    // document.write(result);
+                    if (obj.number >= 1) {
+                        window.location.href = "sign.html"
+                    }
+                },
+                error: function () {
+                    document.write("error");
+                }
+            });
+        }else{
+            alert("邮箱和密码不能为空")
+        }
+
+    }
+
+</script>
+    <div class = login>
+<!--        <form action="" id="loginForm" class="fh5co-form animate-box" onsubmit="return false" method="post">-->
+            <p class="login-logo">login</p>
+<!--            <div class = "input">-->
+            <p class="input">email: <input class="input2" id="email" type="text" name="email" placeholder="email" autocomplete="off" /></p>
+            <p class="input">password: <input class="input2" id="password" type="password" name="password" placeholder="password" autocomplete="off" /></p>
+<!--            </div>-->
+            <p>
+                <a class="sign" href="sign.html">注册</a>
+                <a class="forgetpwd" href="forgetpwd.html">忘记密码</a>
+            </p>
+            <input type="button" onclick="login()" value="登录" class="btn">
+
+<!--        </form>-->
+    </div>
+</body>
+</html>
