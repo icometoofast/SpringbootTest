@@ -1,49 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
+<style>
+    .table{
+        text-align: center;
+        margin:100px auto;
+        width: 800px!important;
+        border:1px solid #ccc;
+    }
+    .fixed-table-pagination{
+        width:840px!important;
+        margin: 0px auto!important;
+    }
+    .table thead{
+        background: #999;
+    }
+    .table tbody{
+        background: #eee;
+
+    }
+
+    .table thead td{
+        border:0.5px solid #ccc;
+    }
+
+    .table tbody td{
+        border:1px solid #ccc;
+    }
+
+    #lalala {
+        margin: 60px auto;
+        width: 800px;
+    }
+    .lalalaspan{
+        width: 33%;
+    }
+    p{
+        width: 810px!important;
+    }
+    .lalalaspan {
+        /*background-color:#ffcc00;*/
+        display:-moz-inline-box;
+        display:inline-block;
+        width:33%;
+        text-align:right;
+    }
+
+
+
+</style>
+
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<table class="table" id="table" border="1" cellspacing="0" cellpadding="0" ></table>
-<input type="button" onclick="send()" value="test">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--<script src="https://blog-static.cnblogs.com/files/cj8988/jquery.dataTables.min.js"></script>-->
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+<div id="lalala">
+    <p>
+        <span class="lalalaspan">User ID:&nbsp&nbsp&nbsp&nbsp<input type="text" id="id" ></span>
+        <span class="lalalaspan">User Name:&nbsp&nbsp&nbsp&nbsp<input type="text" id="username" ></span>
+        <span class="lalalaspan">Sex:&nbsp&nbsp&nbsp&nbsp<input type="text" id="sex" ></span>
+    </p>
+    <p>
+        <span class="lalalaspan"> Age:&nbsp&nbsp&nbsp&nbsp<input type="text" id="age" ></span>
+        <span class="lalalaspan"> Password:&nbsp&nbsp&nbsp&nbsp<input type="text" id="password" ></span>
+        <span class="lalalaspan"> Email:&nbsp&nbsp&nbsp&nbsp<input type="text" id="email" ></span>
+    </p>
+</div>
+
+<table class="table" id="table" border="0" cellspacing="0" cellpadding="4">
+</table>
+<input type="button" class="btn" onclick="lalala()" value="test">
+
    <script>
-        function send() {
-            var i = 1;
-            var myData = {
-                "email": "lalala"
-            };
-            if (i == 1) {
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/getBedTest",
-                    data: JSON.stringify(myData),
-                    contentType: "application/json;charset=UTF-8",
-                    success: function (data) {
-                        var jsonData = JSON.stringify(data);// 转成JSON格式
-                        // submit(jsonData);
-                        console.log(jsonData)
-                        var obj = eval('(' + jsonData + ')');
-                        if(obj.total == 4) {
-                            $("#table").append("<tr><td class='labelTd'>" + obj.data[1].id + "</td><td>" + obj.data[1].usernamegit + "</td><tr>");
-                        }
-
-
-                    }
-                })
-            }
-        }
-       function submit(string) {
-           var obj = eval('(' + jsonData + ')');
-           console.log(obj);
-           if(obj.total == 4) {
-               $("#table").append("<tr><td class='labelTd'>" + a + "</td><td>" + b + "</td><tr>");
-           }
+       window.onload = function (){
+           lalala();
        }
 
+        // function send() {
+        //     $("#table tbody").html("");
+        //
+        //     var i = 1;
+        //     var myData = {
+        //         "email": "lalala"
+        //     };
+        //     if (i == 1) {
+        //         $.ajax({
+        //             type: "POST",
+        //             url: "http://localhost:8080/getBedTest",
+        //             data: JSON.stringify(myData),
+        //             contentType: "application/json;charset=UTF-8",
+        //             success: function (data) {
+        //                 var jsonData = JSON.stringify(data);// 转成JSON格式
+        //                 // submit(jsonData);
+        //                 console.log(jsonData)
+        //                 var obj = eval('(' + jsonData + ')');
+        //                 if(obj.total == 4) {
+        //                     for (var i = 0;
+        //                     i <= 3;
+        //                     i++
+        //                 )
+        //                     {
+        //
+        //                         $("#table tbody").append("<tr><td class='labelTd'>" + obj.data[i].id + "</td><td>" + obj.data[i].username + "</td><tr>");
+        //                     }
+        //                 }
+        //
+        //
+        //             }
+        //         })
+        //     }
+        // }
 
-    </script>
+        /*
+        下面的方法论是用来对table进行列大小调整的，可以拖动边框来调整每个cell的大小
+         */
+
+
+
+        function lalala() {
+            var id = document.getElementById("id").value;
+            var age = document.getElementById("age").value;
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var sex = document.getElementById("sex").value;
+            if(id == "" ) {
+                id = 0;
+            }
+            // if(username == "" ){
+            //     username=null;
+            // }if(password == "" ){
+            //     password=null;
+            // }if(sex == "" ){
+            //     sex=null;
+            // }if(email == "" ){
+            //     email=null;
+            // }
+                if(age == "" ){
+                age=0;
+            }
+            var myData = {
+                "id": id,
+                "age":age,
+                "username":username,
+                "email":email,
+                "password":password,
+                "sex":sex
+            };
+            console.log(myData);
+            $("#table").bootstrapTable({
+                url:"http://localhost:8080/getBedTest1",  //请求地址
+                    method:'post',
+                    queryParams:myData,
+                striped : true, //是否显示行间隔色
+                pageNumber : 1, //初始化加载第一页
+                pagination : true,//是否分页
+                sidePagination : 'client',//server:服务器端分页|client：前端分页
+                pageSize : 3,//单页记录数
+                pageList : [1,10],//可选择单页记录数
+                showRefresh : true,//刷新按钮
+                responseHandler: function (res) {
+                    console.log(res)
+                    return eval(res.data)
+                },
+                columns : [ {
+                    title : 'User ID',
+                    field : 'id',
+                    sortable : true
+                }, {
+                    title : 'User Name',
+                    field : 'username',
+                    sortable : true
+                }, {
+                    title : 'Email',
+                    field : 'email',
+                    sortable : true
+                }, {
+                    title : 'Sex',
+                    field : 'sex',
+                    sortable : true
+                }, {
+                    title : 'Password',
+                    field : 'password',
+                    sortable : true
+                }, {
+                    title : 'Age',
+                    field : 'age',
+                    sortable : true
+                }]
+            })
+            // alert("lalala")这是用来测试点击是否有效果
+        }
+
+
+       // var tTD; //用来存储当前更改宽度的Table Cell,避免快速移动鼠标的问题
+       // var table = document.getElementById("table");
+       // for (j = 0; j < table.rows[0].cells.length; j++) {
+       //     table.rows[0].cells[j].onmousedown = function () {
+       //         //记录单元格
+       //         tTD = this;
+       //         if (event.offsetX > tTD.offsetWidth - 10) {
+       //             tTD.mouseDown = true;
+       //             tTD.oldX = event.x;
+       //             tTD.oldWidth = tTD.offsetWidth;
+       //         }
+       //
+       //     };
+       //     table.rows[0].cells[j].onmouseup = function () {
+       //         //结束宽度调整
+       //         if (tTD == undefined) tTD = this;
+       //         tTD.mouseDown = false;
+       //         tTD.style.cursor = 'default';
+       //     };
+       //     table.rows[0].cells[j].onmousemove = function () {
+       //         //更改鼠标样式
+       //         if (event.offsetX > this.offsetWidth - 10)
+       //             this.style.cursor = 'col-resize';
+       //         else
+       //             this.style.cursor = 'default';
+       //         //取出暂存的Table Cell
+       //         if (tTD == undefined) tTD = this;
+       //         //调整宽度
+       //         if (tTD.mouseDown != null && tTD.mouseDown == true) {
+       //             tTD.style.cursor = 'default';
+       //             if (tTD.oldWidth + (event.x - tTD.oldX) > 0)
+       //                 tTD.width = tTD.oldWidth + (event.x - tTD.oldX);
+       //             //调整列宽
+       //             tTD.style.width = tTD.width;
+       //             tTD.style.cursor = 'col-resize';
+       //             //调整该列中的每个Cell
+       //             table = tTD;
+       //             while (table.tagName != 'TABLE') table = table.parentElement;
+       //             for (j = 0; j < table.rows.length; j++) {
+       //                 table.rows[j].cells[tTD.cellIndex].width = tTD.width;
+       //             }
+       //
+       //         }
+       //     };
+       // }
+
+   </script>
 </body>
 </html>
