@@ -20,15 +20,41 @@
     </select>
 
     <select id = "selectUserById" parameterType="String" resultType="com.example.springboot.entities.User">
-        select * from SpringBootTest.user where name =#{name}
+        select * from SpringBootTest.user where username =#{name}
     </select>
 
     <select id = "returnNumberById" parameterType="String" resultType="INTEGER">
-        select count(*) from SpringBootTest.user where name =#{name}
+        select count(*) from SpringBootTest.user where username =#{name}
     </select>
 
     <insert id="insertDataSan" >
-        insert into SpringBootTest.user(name,sex,age) values (#{name},#{sex},#{age});
+        insert into SpringBootTest.user(username,sex,age) values (#{name},#{sex},#{age});
     </insert>
+
+    <select id="testTable" parameterType="com.example.springboot.entities.User" resultType="com.example.springboot.entities.User">
+        select * from SpringBootTest.user
+        <where>
+        1 = 1
+            <if test="user.id != 0">
+                and id = #{user.id}
+            </if>
+            <if test="user.userName != null and user.userName != ''">
+                and username = #{user.userName}
+            </if>
+            <if test="user.sex != null and user.sex != ''">
+                and sex = #{user.sex}
+            </if>
+            <if test="user.age != 0">
+                and age = #{user.age}
+            </if>
+            <if test="user.password != null and user.password != ''">
+                and password = #{user.password}
+            </if>
+            <if test="user.email != null and user.email != ''">
+                and email = #{user.email}
+            </if>
+        </where>
+        ;
+    </select>
 
 </mapper>

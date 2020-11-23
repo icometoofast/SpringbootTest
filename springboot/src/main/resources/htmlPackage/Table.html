@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>showDataWithTable</title>
+    <style>
+
+
+        body,html{
+            margin:0px;
+            padding:0px;
+            width: 100%!important;
+            height: 100%!important;
+        }
+
+
+        #main{
+            width: 87%;
+            height:100%;
+            float: right;
+            margin:0px auto;
+        }
+
+
+        /*
+        左侧导航页面的css设置
+        */
+        .aside{
+            background: #f00;
+            width: 13%;
+            height: 100%;
+            float: left;
+        }
+
+        .nav{width: 100%;height: 100%;background: #263238;transition: all .3s;}
+        .nav a{display: block;overflow: hidden;padding-left: 20px;line-height: 46px;max-height: 46px;color: #ABB1B7;transition: all .3s;}
+        .nav a span{margin-left: 30px;}
+        .nav-item{position: relative;}
+        #aat{padding-inline-start: 0px}
+        .nav-item.nav-show{border-bottom: none;}
+        .nav-item ul{display: none;background: rgba(0,0,0,.1);}
+        .nav-item.nav-show ul{display: block;}
+        .nav-item>a:before{content: "";position: absolute;left: 0px;width: 2px;height: 46px;background: #34A0CE;opacity:0;transition: all .3s;}
+        .nav .nav-icon{font-size: 30px;position: absolute;margin-left:-1px;}
+        /* 此处修改导航图标 可自定义iconfont 替换*/
+        .icon_1::after{content: "\e62b";}
+        .icon_2::after{content: "\e669";}
+        .icon_3::after{content: "\e61d";}
+        /*---------------------*/
+        .nav-more{float:right;margin:18px 20px;font-size: 16px;transition: transform .3s;}
+        /* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+        .nav-more::after{content: ""; display: block; width: 20px; height: 10px; background: url("icon/toheadJT.png"),no-repeat; background-size:100%}
+        /*---------------------*/
+        .nav-show .nav-more{transform:rotate(180deg);}
+        .nav-show,.nav-item>a:hover{color: #FFF;background:rgba(0,0,0,.1);}
+        .nav-show>a:before,.nav-item>a:hover:before{opacity:1;}
+        .nav-item li:hover a{color: #FFF;background: rgba(0, 0, 0,.1);}
+
+        /* nav-mini */
+        .nav-mini.nav{width: 60px;}
+        .nav-mini.nav .nav-icon{/* margin-left:-2px; */}
+        .nav-mini.nav .nav-item>a span{display: none;}
+        .nav-mini.nav .nav-more{margin-right: -20px;}
+        .nav-mini.nav .nav-item ul{position: absolute;top:0px;left:60px;width: 180px;z-index: 99;background:#3C474C;overflow: hidden;}
+        .nav-mini.nav .nav-item:hover{background:rgba(255,255,255,.1);}
+        .nav-mini.nav .nav-item:hover .nav-item a{color:#FFF;}
+        .nav-mini.nav .nav-item:hover a:before{opacity:1;}
+        .nav-mini.nav .nav-item:hover ul{display: block;}
+        .nav-top{
+            width: 100%;
+            height: 13%;
+            background-color: #000;
+        }
+
+        #mini{
+            width: 100%;
+            height: 100%;
+            background-color: #0f0;
+        }
+        #logoo{
+            width: 100%;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+       /*
+       下面是table相关的css
+        */
+        .table{
+            text-align: center;
+            margin:100px auto;
+            width: 90%!important;
+            border:1px solid #ccc;
+        }
+        .table thead{
+            background: #999;
+        }
+        .table tbody{
+            background: #eee;
+
+        }
+
+        .table thead td{
+            border:0.5px solid #ccc;
+        }
+
+        .table tbody td{
+            border:1px solid #ccc;
+        }
+
+
+        .fixed-table-pagination{
+            width:95%!important;
+            margin: 0px auto!important;
+        }
+        .bootstrap-table.bootstrap3{
+            overflow: scroll;
+            width: 90% !important;
+            height: 50%;
+            margin: 30px auto;
+            padding:20px 30px 10px 30px;
+            border-radius: 10px;
+            border:1px #eee solid;
+            box-shadow: #eee 0px 0px 2px 1px;
+            padding:30px;
+        }
+
+        /*
+        下面是搜索栏相关的css设置
+         */
+        #lalala {
+            margin: 10px auto 10px auto;
+            width: 80%;
+        }
+
+        p{
+            width: 100%!important;
+        }
+        .lalalaspan {
+            /*background-color:#ffcc00;*/
+            display:-moz-inline-box;
+            display:inline-block;
+            width:33%;
+            text-align:center;
+            font-size: 15px;
+        }
+
+        .inputt{
+            border-radius: 3px;
+            border: 1px solid #000!important;
+            outline: none;
+        }
+
+        .inputt:focus{
+            border:1px solid #f00!important;
+        }
+
+
+        #submitbtn{
+            margin:0px 0px 0px 300px;
+            width:80px;
+            outline:none;
+        }
+        #clearbtn{
+            margin:0px 200px 0px 100px;
+            width: 80px;
+            outline: none;
+        }
+
+        #submitbtn:active,#clearbtn:active{
+            transform: scale(0.9);
+        }
+        #showerr{
+            /*color: #fff;*/
+            margin:0px auto;
+            width:100%;
+            font-size: 15px;
+            text-align: center;
+            color: #fff;
+        }
+        #seachtdiv{
+            width: 90%;
+            margin: 30px auto 20px auto;
+            box-shadow: #888 12px 12px 9px 0px;
+            border-radius: 10px;
+            border: #ccc solid 1px;
+            padding: 20px;
+        }
+
+        /*
+        下面是header相关的css
+         */
+        .header{
+            width: 100%;
+            height:12%;
+            border-bottom:1px solid #eee;
+            box-shadow: #888 0px 12px 9px 0px;
+        }
+
+        #userlabel{
+            float: right;
+            background-color: #fff;
+            font-size: 18.69px;
+            width: 20%;
+            padding:17.5px 17.5px;
+        }
+
+        #welcomelabel{
+            font-size: 43px;
+            width: 80%;
+            padding:20px 30px;
+        }
+
+        .titlelabel{
+            height: 100%;
+            text-align: left;
+        }
+        #userlabel:hover{
+            background-color: #ccc;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--<script src="https://blog-static.cnblogs.com/files/cj8988/jquery.dataTables.min.js"></script>-->
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+<div class="aside">
+    <div class="nav">
+        <div class="nav-top">
+            <div id="mini"  style="border-bottom:1px solid rgba(255,255,255,.1);background-color: #000"><img id="logoo" src="images/mainlogo.png" ></div>
+        </div>
+        <ul id="aat">
+
+        </ul>
+    </div>
+</div>
+
+<div id="main">
+    <div class="header">
+        <label class="titlelabel" id="welcomelabel">欢迎来到反叛军总部</label>
+        <label class="titlelabel" id="userlabel">欢迎你，铁驭</label>
+    </div>
+    <div id="seachtdiv">
+        <div id="lalala">
+            <p>
+                <span class="lalalaspan">User ID:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt" id="id" oninput="value=value.replace(/[^\d]/g,'')" ></span>
+                <span class="lalalaspan">User Name:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt"  id="username" ></span>
+                <span class="lalalaspan">&nbsp&nbspSex:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt"  id="sex" ></span>
+            </p>
+            <p>
+                <span class="lalalaspan"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbspAge:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt"  id="age" oninput="value=value.replace(/[^\d]/g,'')"></span>
+                <span class="lalalaspan"> &nbsp&nbsp&nbspPassword:&nbsp&nbsp&nbsp&nbsp<input type="text"  class="inputt" id="password" ></span>
+                <span class="lalalaspan"> Email:&nbsp&nbsp&nbsp&nbsp<input type="email" class="inputt"  id="email" ></span>
+            </p>
+        </div>
+        <div>
+            <label id="showerr">lalala</label>
+        </div>
+        <div id="btndiv">
+        <input type="button" class="btn" id="submitbtn" onclick="lalala2()" value="submit"/>
+        <input type="button" class="btn" id="clearbtn" onclick="clearlalala()" value="clear"/>
+        </div>
+    </div>
+    <table class="table" id="table" border="0" cellspacing="0" cellpadding="4">
+    </table>
+</div>
+
+
+   <script>
+       window.onload = function (){
+           lalala();
+           $("#table").bootstrapTable('destroy');
+           lalala();
+
+       }
+       var id = document.getElementById("id").value;
+       var age = document.getElementById("age").value;
+       var username = document.getElementById("username").value;
+       var email = document.getElementById("email").value;
+       var password = document.getElementById("password").value;
+       var sex = document.getElementById("sex").value;
+
+
+
+
+
+
+        function lalala() {
+            var d = $("#table").bootstrapTable('destroy')
+            var id = document.getElementById("id").value;
+            var age = document.getElementById("age").value;
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var sex = document.getElementById("sex").value;
+            if(id == "" ) {
+                id = 0;
+            }
+                if(age == "" ){
+                age=0;
+            }
+            var myData = {
+                "id": id,
+                "age":age,
+                "username":username,
+                "email":email,
+                "password":password,
+                "sex":sex
+            };
+            console.log(myData);
+            $("#table").bootstrapTable({
+                url:"http://localhost:8080/getBedTest1",  //请求地址
+                    method:'post',
+                    queryParams:myData,
+                striped : true, //是否显示行间隔色
+                pageNumber : 1, //初始化加载第一页
+                pagination : true,//是否分页
+                sidePagination : 'client',//server:服务器端分页|client：前端分页
+                pageSize : 3,//单页记录数
+                pageList : [1,10],//可选择单页记录数
+                showRefresh : false,//刷新按钮
+                clickToSelect:true,//点击选中
+                singleSelect:true,//允许单选
+                responseHandler: function (res) {
+                    console.log(res)
+                    return eval(res.data)
+                },
+                columns : [
+                //     {
+                //     checkbox:true,//添加一列多选列
+                // },
+                    {
+                    title : 'User ID',
+                    field : 'id',
+                    sortable : true
+                }, {
+                    title : 'User Name',
+                    field : 'userName',
+                    sortable : true
+                }, {
+                    title : 'Email',
+                    field : 'email',
+                    sortable : true
+                }, {
+                    title : 'Sex',
+                    field : 'sex',
+                    sortable : true
+                }, {
+                    title : 'Password',
+                    field : 'password',
+                    sortable : true
+                }, {
+                    title : 'Age',
+                    field : 'age',
+                    sortable : true
+                }]
+            })// alert("lalala")这是用来测试点击是否有效果
+        }
+
+
+
+       function clearlalala() {
+
+           document.getElementById("id").value = "";
+           document.getElementById("age").value = "";
+           document.getElementById("username").value = "";
+           document.getElementById("email").value = "";
+           document.getElementById("password").value = "";
+           document.getElementById("sex").value = "";
+           window.location.href="http://localhost:8080/test.html"
+
+       }
+
+       function lalala2() {
+           var id = document.getElementById("id").value;
+           var age = document.getElementById("age").value;
+           var username = document.getElementById("username").value;
+           var email = document.getElementById("email").value;
+           var password = document.getElementById("password").value;
+           var sex = document.getElementById("sex").value;
+           let checkEmail = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+           let checkNumber = /[1-9][0-9]*$/;
+           var isSearch = true;
+           if (email != "") {
+               if (checkEmail.test(email)) {
+                   console.log("email true");
+                   console.log("321");document.getElementById("showerr").innerText = "";
+
+               }else{
+                   console.log("123");
+                   document.getElementById("showerr").innerText = "Email格式有误";
+                   document.getElementById("showerr").style = "color:#f00;";
+                   isSearch = false;
+                   console.log("ied" + isSearch);
+
+               }
+           }
+           console.log("email null" + email != "");
+           console.log("email check" + checkEmail.test(email));
+           console.log("email search" + isSearch);
+           if (id != "") {
+               if (checkNumber.test(id)) {
+                   document.getElementById("showerr").innerText = "";
+               }
+               else{
+                   document.getElementById("showerr").innerText = "id中包含非数字";
+                   document.getElementById("showerr").style = "color:#f00;";
+                   isSearch = false;
+               }
+           }
+           if (age != "") {
+               if (checkNumber.test(age)) {
+                   document.getElementById("showerr").innerText = "";
+               }
+               else {
+                   document.getElementById("showerr").innerText = "age中包含非数字";
+                   document.getElementById("showerr").style = "color:#f00;";
+                   isSearch = false;
+               }
+           }
+           console.log(isSearch);
+           if(isSearch) {
+               document.getElementById("btndiv").style = "margin:0px 0px 100px 0px;";
+               $("#table").bootstrapTable('destroy');
+               lalala();
+           }
+       }
+
+        /*
+        下面这一段是用来获取用户点击的那一行，并通过id值来跳转到该用户的details界面
+         */
+        $("table").on("click","tr",function(e){
+            var arr = [];
+            $(this).children().map(function(el){
+                arr.push($(this)[0].innerText)
+            });
+            console.log('获取的eeid：'+arr[0]);
+            window.location.href="resetPwd.html?"+arr[0];
+        });
+
+        /*
+        控制导航页面的文字信息
+        */
+       $(function(){
+           var navList = [
+               {
+                   "p" : "银川市",
+                   "c" : ["兴庆区","金凤区","西夏区","中宁县","灵武市","贺兰县"]
+               },
+               {
+                   "p" : "石嘴山市",
+                   "c" : ["大武口区","惠农区","平罗县"]
+               },
+               {
+                   "p" : "吴忠市",
+                   "c" : ["利通区","红寺堡区","盐池县","同心县","青铜峡市"]
+               },
+               {
+                   "p" : "中卫市",
+                   "c" : ["沙坡头区","中宁县","海原县"]
+               },
+               {
+                   "p" : "固原市",
+                   "c" : ["原州区","泾源县","西吉县","隆德县","彭阳县"]
+               }
+           ]
+           var navData = '';
+           for(let i=0;i<navList.length;i++){
+               navData+= "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>"+navList[i].p+"</span><i class='my-icon nav-more'></i></a><ul>"
+               for(let w=0;w<navList[i].c.length;w++){
+                   navData+="<li><a href='javascript:;'><span>"+navList[i].c[w]+"</span></a></li>"
+               }
+               navData+="</ul></li>"
+           }
+           // console.log(navData)
+           $('#aat').html(navData)
+       })
+
+       /*
+       导航页的收缩与展开
+        */
+       $(function(){
+           // nav收缩展开
+           $('#aat').on('click','.nav-item>a',function(){
+               if (!$('.nav').hasClass('nav-mini')) {
+                   if ($(this).next().css('display') == "none") {
+                       //展开未展开
+                       $('.nav-item').children('ul').slideUp(300);
+                       $(this).next('ul').slideDown(300);
+                       $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
+                   }else{
+                       //收缩已展开
+                       $(this).next('ul').slideUp(300);
+                       $('.nav-item.nav-show').removeClass('nav-show');
+                   }
+               }
+           });
+           // 标志点击样式
+           $('#aat').on('click','.nav-item>ul>li',function(){
+               $('.nav-item>ul>li').css('background','none')
+               $(this).css('background','yellow')
+//  	$(this).siblings().css('background','none')
+           })
+           //nav-mini切换
+           $('#mini').on('click',function(){
+               if (!$('.nav').hasClass('nav-mini')) {
+                   $('.nav-item.nav-show').removeClass('nav-show');
+                   $('.nav-item').children('ul').removeAttr('style');
+                   $('.nav').addClass('nav-mini');
+               }else{
+                   $('.nav').removeClass('nav-mini');
+               }
+           });
+       });
+
+
+
+   </script>
+</body>
+</html>
