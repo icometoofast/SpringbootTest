@@ -3,21 +3,95 @@
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
-
+    <title>showDataWithTable</title>
     <style>
 
 
+        body,html{
+            margin:0px;
+            padding:0px;
+            width: 100%!important;
+            height: 100%!important;
+        }
 
+
+        #main{
+            width: 87%;
+            height:100%;
+            float: right;
+            margin:0px auto;
+        }
+
+
+        /*
+        左侧导航页面的css设置
+        */
+        .aside{
+            background: #f00;
+            width: 13%;
+            height: 100%;
+            float: left;
+        }
+
+        .nav{width: 100%;height: 100%;background: #263238;transition: all .3s;}
+        .nav a{display: block;overflow: hidden;padding-left: 20px;line-height: 46px;max-height: 46px;color: #ABB1B7;transition: all .3s;}
+        .nav a span{margin-left: 30px;}
+        .nav-item{position: relative;}
+        #aat{padding-inline-start: 0px}
+        .nav-item.nav-show{border-bottom: none;}
+        .nav-item ul{display: none;background: rgba(0,0,0,.1);}
+        .nav-item.nav-show ul{display: block;}
+        .nav-item>a:before{content: "";position: absolute;left: 0px;width: 2px;height: 46px;background: #34A0CE;opacity:0;transition: all .3s;}
+        .nav .nav-icon{font-size: 30px;position: absolute;margin-left:-1px;}
+        /* 此处修改导航图标 可自定义iconfont 替换*/
+        .icon_1::after{content: "\e62b";}
+        .icon_2::after{content: "\e669";}
+        .icon_3::after{content: "\e61d";}
+        /*---------------------*/
+        .nav-more{float:right;margin:18px 20px;font-size: 16px;transition: transform .3s;}
+        /* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+        .nav-more::after{content: ""; display: block; width: 20px; height: 10px; background: url("icon/toheadJT.png"),no-repeat; background-size:100%}
+        /*---------------------*/
+        .nav-show .nav-more{transform:rotate(180deg);}
+        .nav-show,.nav-item>a:hover{color: #FFF;background:rgba(0,0,0,.1);}
+        .nav-show>a:before,.nav-item>a:hover:before{opacity:1;}
+        .nav-item li:hover a{color: #FFF;background: rgba(0, 0, 0,.1);}
+
+        /* nav-mini */
+        .nav-mini.nav{width: 60px;}
+        .nav-mini.nav .nav-icon{/* margin-left:-2px; */}
+        .nav-mini.nav .nav-item>a span{display: none;}
+        .nav-mini.nav .nav-more{margin-right: -20px;}
+        .nav-mini.nav .nav-item ul{position: absolute;top:0px;left:60px;width: 180px;z-index: 99;background:#3C474C;overflow: hidden;}
+        .nav-mini.nav .nav-item:hover{background:rgba(255,255,255,.1);}
+        .nav-mini.nav .nav-item:hover .nav-item a{color:#FFF;}
+        .nav-mini.nav .nav-item:hover a:before{opacity:1;}
+        .nav-mini.nav .nav-item:hover ul{display: block;}
+        .nav-top{
+            width: 100%;
+            height: 13%;
+            background-color: #000;
+        }
+
+        #mini{
+            width: 100%;
+            height: 100%;
+            background-color: #0f0;
+        }
+        #logoo{
+            width: 100%;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+       /*
+       下面是table相关的css
+        */
         .table{
             text-align: center;
             margin:100px auto;
             width: 90%!important;
             border:1px solid #ccc;
-        }
-        .fixed-table-pagination{
-            width:95%!important;
-            margin: 0px auto!important;
         }
         .table thead{
             background: #999;
@@ -35,18 +109,28 @@
             border:1px solid #ccc;
         }
 
-        .inputt{
-            border-radius: 3px;
-            border: 1px solid #000!important;
-            outline: none;
+
+        .fixed-table-pagination{
+            width:95%!important;
+            margin: 0px auto!important;
+        }
+        .bootstrap-table.bootstrap3{
+            overflow: scroll;
+            width: 90% !important;
+            height: 50%;
+            margin: 30px auto;
+            padding:20px 30px 10px 30px;
+            border-radius: 10px;
+            border:1px #eee solid;
+            box-shadow: #eee 0px 0px 2px 1px;
+            padding:30px;
         }
 
-        .inputt:focus{
-            border:1px solid #f00!important;
-        }
-
+        /*
+        下面是搜索栏相关的css设置
+         */
         #lalala {
-            margin: 20px auto 10px auto;
+            margin: 10px auto 10px auto;
             width: 80%;
         }
 
@@ -59,19 +143,19 @@
             display:inline-block;
             width:33%;
             text-align:center;
-            font-size: 20px;
+            font-size: 15px;
         }
 
-        body,html{
-            margin:0px;
-            padding:0px;
-            width: 100%!important;
-            height: 100%!important;
+        .inputt{
+            border-radius: 3px;
+            border: 1px solid #000!important;
+            outline: none;
         }
-        /*.btn{*/
-        /*    margin: -50px 500px;*/
-        /*    width: 50px;*/
-        /*}*/
+
+        .inputt:focus{
+            border:1px solid #f00!important;
+        }
+
 
         #submitbtn{
             margin:0px 0px 0px 300px;
@@ -97,34 +181,45 @@
         }
         #seachtdiv{
             width: 90%;
-            margin: 60px auto 20px auto;
+            margin: 30px auto 20px auto;
             box-shadow: #888 12px 12px 9px 0px;
             border-radius: 10px;
             border: #ccc solid 1px;
-            padding: 40px;
+            padding: 20px;
         }
 
-        .bootstrap-table.bootstrap3{
-            width: 90% !important;
-            margin: 30px auto;
-            padding:20px 30px 10px 30px;
-            border-radius: 10px;
-            border:1px #eee solid;
-            box-shadow: #eee 0px 0px 2px 1px;
+        /*
+        下面是header相关的css
+         */
+        .header{
+            width: 100%;
+            height:12%;
+            border-bottom:1px solid #eee;
+            box-shadow: #888 0px 12px 9px 0px;
         }
 
-        .aside{
-            background: #f00;
-            width: 15%;
-            height: 100%;
-            float: left;
-        }
-
-        #main{
-            width: 85%;
+        #userlabel{
             float: right;
-            margin:10px auto;
+            background-color: #fff;
+            font-size: 18.69px;
+            width: 20%;
+            padding:17.5px 17.5px;
         }
+
+        #welcomelabel{
+            font-size: 43px;
+            width: 80%;
+            padding:20px 30px;
+        }
+
+        .titlelabel{
+            height: 100%;
+            text-align: left;
+        }
+        #userlabel:hover{
+            background-color: #ccc;
+        }
+
 
 
     </style>
@@ -141,17 +236,21 @@
 <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
 <div class="aside">
-<!--    <div class="nav">-->
-<!--        <div class="nav-top">-->
-<!--            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="images/mini.png" ></div>-->
-<!--        </div>-->
-<!--        <ul id="aat">-->
+    <div class="nav">
+        <div class="nav-top">
+            <div id="mini"  style="border-bottom:1px solid rgba(255,255,255,.1);background-color: #000"><img id="logoo" src="images/mainlogo.png" ></div>
+        </div>
+        <ul id="aat">
 
-<!--        </ul>-->
-
+        </ul>
+    </div>
 </div>
 
 <div id="main">
+    <div class="header">
+        <label class="titlelabel" id="welcomelabel">欢迎来到反叛军总部</label>
+        <label class="titlelabel" id="userlabel">欢迎你，铁驭</label>
+    </div>
     <div id="seachtdiv">
         <div id="lalala">
             <p>
@@ -175,7 +274,7 @@
     </div>
     <table class="table" id="table" border="0" cellspacing="0" cellpadding="4">
     </table>
-    </div>
+</div>
 
 
    <script>
@@ -350,40 +449,81 @@
             window.location.href="resetPwd.html?"+arr[0];
         });
 
-       // $(function(){
-       //     var navList = [
-       //         {
-       //             "p" : "银川市",
-       //             "c" : ["兴庆区","金凤区","西夏区","中宁县","灵武市","贺兰县"]
-       //         },
-       //         {
-       //             "p" : "石嘴山市",
-       //             "c" : ["大武口区","惠农区","平罗县"]
-       //         },
-       //         {
-       //             "p" : "吴忠市",
-       //             "c" : ["利通区","红寺堡区","盐池县","同心县","青铜峡市"]
-       //         },
-       //         {
-       //             "p" : "中卫市",
-       //             "c" : ["沙坡头区","中宁县","海原县"]
-       //         },
-       //         {
-       //             "p" : "固原市",
-       //             "c" : ["原州区","泾源县","西吉县","隆德县","彭阳县"]
-       //         }
-       //     ]
-       //     var navData = '';
-       //     for(let i=0;i<navList.length;i++){
-       //         navData+= "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>"+navList[i].p+"</span><i class='my-icon nav-more'></i></a><ul>"
-       //         for(let w=0;w<navList[i].c.length;w++){
-       //             navData+="<li><a href='javascript:;'><span>"+navList[i].c[w]+"</span></a></li>"
-       //         }
-       //         navData+="</ul></li>"
-       //     }
-       //     console.log(navData)
-       //     $('#aat').html(navData)
-       // })
+        /*
+        控制导航页面的文字信息
+        */
+       $(function(){
+           var navList = [
+               {
+                   "p" : "银川市",
+                   "c" : ["兴庆区","金凤区","西夏区","中宁县","灵武市","贺兰县"]
+               },
+               {
+                   "p" : "石嘴山市",
+                   "c" : ["大武口区","惠农区","平罗县"]
+               },
+               {
+                   "p" : "吴忠市",
+                   "c" : ["利通区","红寺堡区","盐池县","同心县","青铜峡市"]
+               },
+               {
+                   "p" : "中卫市",
+                   "c" : ["沙坡头区","中宁县","海原县"]
+               },
+               {
+                   "p" : "固原市",
+                   "c" : ["原州区","泾源县","西吉县","隆德县","彭阳县"]
+               }
+           ]
+           var navData = '';
+           for(let i=0;i<navList.length;i++){
+               navData+= "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>"+navList[i].p+"</span><i class='my-icon nav-more'></i></a><ul>"
+               for(let w=0;w<navList[i].c.length;w++){
+                   navData+="<li><a href='javascript:;'><span>"+navList[i].c[w]+"</span></a></li>"
+               }
+               navData+="</ul></li>"
+           }
+           // console.log(navData)
+           $('#aat').html(navData)
+       })
+
+       /*
+       导航页的收缩与展开
+        */
+       $(function(){
+           // nav收缩展开
+           $('#aat').on('click','.nav-item>a',function(){
+               if (!$('.nav').hasClass('nav-mini')) {
+                   if ($(this).next().css('display') == "none") {
+                       //展开未展开
+                       $('.nav-item').children('ul').slideUp(300);
+                       $(this).next('ul').slideDown(300);
+                       $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
+                   }else{
+                       //收缩已展开
+                       $(this).next('ul').slideUp(300);
+                       $('.nav-item.nav-show').removeClass('nav-show');
+                   }
+               }
+           });
+           // 标志点击样式
+           $('#aat').on('click','.nav-item>ul>li',function(){
+               $('.nav-item>ul>li').css('background','none')
+               $(this).css('background','yellow')
+//  	$(this).siblings().css('background','none')
+           })
+           //nav-mini切换
+           $('#mini').on('click',function(){
+               if (!$('.nav').hasClass('nav-mini')) {
+                   $('.nav-item.nav-show').removeClass('nav-show');
+                   $('.nav-item').children('ul').removeAttr('style');
+                   $('.nav').addClass('nav-mini');
+               }else{
+                   $('.nav').removeClass('nav-mini');
+               }
+           });
+       });
+
 
 
    </script>
