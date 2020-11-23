@@ -141,6 +141,13 @@
 <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
 <div class="aside">
+<!--    <div class="nav">-->
+<!--        <div class="nav-top">-->
+<!--            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="images/mini.png" ></div>-->
+<!--        </div>-->
+<!--        <ul id="aat">-->
+
+<!--        </ul>-->
 
 </div>
 
@@ -166,9 +173,9 @@
         <input type="button" class="btn" id="clearbtn" onclick="clearlalala()" value="clear"/>
         </div>
     </div>
-    <table class="table" id="table" border="0" cellspacing="0" cellpadding="4" onclick="selectrow()">
+    <table class="table" id="table" border="0" cellspacing="0" cellpadding="4">
     </table>
-</div>
+    </div>
 
 
    <script>
@@ -186,44 +193,7 @@
        var sex = document.getElementById("sex").value;
 
 
-        // function send() {
-        //     $("#table tbody").html("");
-        //
-        //     var i = 1;
-        //     var myData = {
-        //         "email": "lalala"
-        //     };
-        //     if (i == 1) {
-        //         $.ajax({
-        //             type: "POST",
-        //             url: "http://localhost:8080/getBedTest",
-        //             data: JSON.stringify(myData),
-        //             contentType: "application/json;charset=UTF-8",
-        //             success: function (data) {
-        //                 var jsonData = JSON.stringify(data);// 转成JSON格式
-        //                 // submit(jsonData);
-        //                 console.log(jsonData)
-        //                 var obj = eval('(' + jsonData + ')');
-        //                 if(obj.total == 4) {
-        //                     for (var i = 0;
-        //                     i <= 3;
-        //                     i++
-        //                 )
-        //                     {
-        //
-        //                         $("#table tbody").append("<tr><td class='labelTd'>" + obj.data[i].id + "</td><td>" + obj.data[i].username + "</td><tr>");
-        //                     }
-        //                 }
-        //
-        //
-        //             }
-        //         })
-        //     }
-        // }
 
-        /*
-        下面的方法论是用来对table进行列大小调整的，可以拖动边框来调整每个cell的大小
-         */
 
 
 
@@ -238,15 +208,6 @@
             if(id == "" ) {
                 id = 0;
             }
-            // if(username == "" ){
-            //     username=null;
-            // }if(password == "" ){
-            //     password=null;
-            // }if(sex == "" ){
-            //     sex=null;
-            // }if(email == "" ){
-            //     email=null;
-            // }
                 if(age == "" ){
                 age=0;
             }
@@ -305,57 +266,10 @@
                     field : 'age',
                     sortable : true
                 }]
-            })
-
-            // alert("lalala")这是用来测试点击是否有效果
+            })// alert("lalala")这是用来测试点击是否有效果
         }
 
 
-       // var tTD; //用来存储当前更改宽度的Table Cell,避免快速移动鼠标的问题
-       // var table = document.getElementById("table");
-       // for (j = 0; j < table.rows[0].cells.length; j++) {
-       //     table.rows[0].cells[j].onmousedown = function () {
-       //         //记录单元格
-       //         tTD = this;
-       //         if (event.offsetX > tTD.offsetWidth - 10) {
-       //             tTD.mouseDown = true;
-       //             tTD.oldX = event.x;
-       //             tTD.oldWidth = tTD.offsetWidth;
-       //         }
-       //
-       //     };
-       //     table.rows[0].cells[j].onmouseup = function () {
-       //         //结束宽度调整
-       //         if (tTD == undefined) tTD = this;
-       //         tTD.mouseDown = false;
-       //         tTD.style.cursor = 'default';
-       //     };
-       //     table.rows[0].cells[j].onmousemove = function () {
-       //         //更改鼠标样式
-       //         if (event.offsetX > this.offsetWidth - 10)
-       //             this.style.cursor = 'col-resize';
-       //         else
-       //             this.style.cursor = 'default';
-       //         //取出暂存的Table Cell
-       //         if (tTD == undefined) tTD = this;
-       //         //调整宽度
-       //         if (tTD.mouseDown != null && tTD.mouseDown == true) {
-       //             tTD.style.cursor = 'default';
-       //             if (tTD.oldWidth + (event.x - tTD.oldX) > 0)
-       //                 tTD.width = tTD.oldWidth + (event.x - tTD.oldX);
-       //             //调整列宽
-       //             tTD.style.width = tTD.width;
-       //             tTD.style.cursor = 'col-resize';
-       //             //调整该列中的每个Cell
-       //             table = tTD;
-       //             while (table.tagName != 'TABLE') table = table.parentElement;
-       //             for (j = 0; j < table.rows.length; j++) {
-       //                 table.rows[j].cells[tTD.cellIndex].width = tTD.width;
-       //             }
-       //
-       //         }
-       //     };
-       // }
 
        function clearlalala() {
 
@@ -365,6 +279,7 @@
            document.getElementById("email").value = "";
            document.getElementById("password").value = "";
            document.getElementById("sex").value = "";
+           window.location.href="http://localhost:8080/test.html"
 
        }
 
@@ -423,14 +338,54 @@
            }
        }
 
-       function selectrow() {
-           var row=$("#table").bootstrapTable('getSelections');
-           alert(row[0])
+        /*
+        下面这一段是用来获取用户点击的那一行，并通过id值来跳转到该用户的details界面
+         */
+        $("table").on("click","tr",function(e){
+            var arr = [];
+            $(this).children().map(function(el){
+                arr.push($(this)[0].innerText)
+            });
+            console.log('获取的eeid：'+arr[0]);
+            window.location.href="resetPwd.html?"+arr[0];
+        });
+
+       // $(function(){
+       //     var navList = [
+       //         {
+       //             "p" : "银川市",
+       //             "c" : ["兴庆区","金凤区","西夏区","中宁县","灵武市","贺兰县"]
+       //         },
+       //         {
+       //             "p" : "石嘴山市",
+       //             "c" : ["大武口区","惠农区","平罗县"]
+       //         },
+       //         {
+       //             "p" : "吴忠市",
+       //             "c" : ["利通区","红寺堡区","盐池县","同心县","青铜峡市"]
+       //         },
+       //         {
+       //             "p" : "中卫市",
+       //             "c" : ["沙坡头区","中宁县","海原县"]
+       //         },
+       //         {
+       //             "p" : "固原市",
+       //             "c" : ["原州区","泾源县","西吉县","隆德县","彭阳县"]
+       //         }
+       //     ]
+       //     var navData = '';
+       //     for(let i=0;i<navList.length;i++){
+       //         navData+= "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>"+navList[i].p+"</span><i class='my-icon nav-more'></i></a><ul>"
+       //         for(let w=0;w<navList[i].c.length;w++){
+       //             navData+="<li><a href='javascript:;'><span>"+navList[i].c[w]+"</span></a></li>"
+       //         }
+       //         navData+="</ul></li>"
+       //     }
+       //     console.log(navData)
+       //     $('#aat').html(navData)
+       // })
 
 
-           // console.log("your select row is" + $('#table').bootstrapTable('getSelections'));
-       }
-
-    </script>
+   </script>
 </body>
 </html>
