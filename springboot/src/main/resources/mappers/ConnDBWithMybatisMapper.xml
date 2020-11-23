@@ -35,6 +35,9 @@
         select * from SpringBootTest.user
         <where>
         1 = 1
+            <if test="user.id != 0">
+                and id = #{user.id}
+            </if>
             <if test="user.userName != null and user.userName != ''">
                 and username = #{user.userName}
             </if>

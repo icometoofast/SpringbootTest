@@ -4,56 +4,134 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
+    <style>
+
+
+
+        .table{
+            text-align: center;
+            margin:100px auto;
+            width: 90%!important;
+            border:1px solid #ccc;
+        }
+        .fixed-table-pagination{
+            width:95%!important;
+            margin: 0px auto!important;
+        }
+        .table thead{
+            background: #999;
+        }
+        .table tbody{
+            background: #eee;
+
+        }
+
+        .table thead td{
+            border:0.5px solid #ccc;
+        }
+
+        .table tbody td{
+            border:1px solid #ccc;
+        }
+
+        .inputt{
+            border-radius: 3px;
+            border: 1px solid #000!important;
+            outline: none;
+        }
+
+        .inputt:focus{
+            border:1px solid #f00!important;
+        }
+
+        #lalala {
+            margin: 20px auto 10px auto;
+            width: 80%;
+        }
+
+        p{
+            width: 100%!important;
+        }
+        .lalalaspan {
+            /*background-color:#ffcc00;*/
+            display:-moz-inline-box;
+            display:inline-block;
+            width:33%;
+            text-align:center;
+            font-size: 20px;
+        }
+
+        body,html{
+            margin:0px;
+            padding:0px;
+            width: 100%!important;
+            height: 100%!important;
+        }
+        /*.btn{*/
+        /*    margin: -50px 500px;*/
+        /*    width: 50px;*/
+        /*}*/
+
+        #submitbtn{
+            margin:0px 0px 0px 300px;
+            width:80px;
+            outline:none;
+        }
+        #clearbtn{
+            margin:0px 200px 0px 100px;
+            width: 80px;
+            outline: none;
+        }
+
+        #submitbtn:active,#clearbtn:active{
+            transform: scale(0.9);
+        }
+        #showerr{
+            /*color: #fff;*/
+            margin:0px auto;
+            width:100%;
+            font-size: 15px;
+            text-align: center;
+            color: #fff;
+        }
+        #seachtdiv{
+            width: 90%;
+            margin: 60px auto 20px auto;
+            box-shadow: #888 12px 12px 9px 0px;
+            border-radius: 10px;
+            border: #ccc solid 1px;
+            padding: 40px;
+        }
+
+        .bootstrap-table.bootstrap3{
+            width: 90% !important;
+            margin: 30px auto;
+            padding:20px 30px 10px 30px;
+            border-radius: 10px;
+            border:1px #eee solid;
+            box-shadow: #eee 0px 0px 2px 1px;
+        }
+
+        .aside{
+            background: #f00;
+            width: 15%;
+            height: 100%;
+            float: left;
+        }
+
+        #main{
+            width: 85%;
+            float: right;
+            margin:10px auto;
+        }
+
+
+    </style>
+
 </head>
 <body>
-<style>
-    .table{
-        text-align: center;
-        margin:100px auto;
-        width: 800px!important;
-        border:1px solid #ccc;
-    }
-    .fixed-table-pagination{
-        width:840px!important;
-        margin: 0px auto!important;
-    }
-    .table thead{
-        background: #999;
-    }
-    .table tbody{
-        background: #eee;
 
-    }
-
-    .table thead td{
-        border:0.5px solid #ccc;
-    }
-
-    .table tbody td{
-        border:1px solid #ccc;
-    }
-
-    #lalala {
-        margin: 60px auto;
-        width: 800px;
-    }
-    .lalalaspan{
-        width: 33%;
-    }
-    p{
-        width: 810px!important;
-    }
-    .lalalaspan {
-        /*background-color:#ffcc00;*/
-        display:-moz-inline-box;
-        display:inline-block;
-        width:33%;
-        text-align:right;
-    }
-
-
-
-</style>
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -62,27 +140,51 @@
 <!--<script src="https://blog-static.cnblogs.com/files/cj8988/jquery.dataTables.min.js"></script>-->
 <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
-<div id="lalala">
-    <p>
-        <span class="lalalaspan">User ID:&nbsp&nbsp&nbsp&nbsp<input type="text" id="id" ></span>
-        <span class="lalalaspan">User Name:&nbsp&nbsp&nbsp&nbsp<input type="text" id="username" ></span>
-        <span class="lalalaspan">Sex:&nbsp&nbsp&nbsp&nbsp<input type="text" id="sex" ></span>
-    </p>
-    <p>
-        <span class="lalalaspan"> Age:&nbsp&nbsp&nbsp&nbsp<input type="text" id="age" ></span>
-        <span class="lalalaspan"> Password:&nbsp&nbsp&nbsp&nbsp<input type="text" id="password" ></span>
-        <span class="lalalaspan"> Email:&nbsp&nbsp&nbsp&nbsp<input type="text" id="email" ></span>
-    </p>
+<div class="aside">
+
 </div>
 
-<table class="table" id="table" border="0" cellspacing="0" cellpadding="4">
-</table>
-<input type="button" class="btn" onclick="lalala()" value="test">
+<div id="main">
+    <div id="seachtdiv">
+        <div id="lalala">
+            <p>
+                <span class="lalalaspan">User ID:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt" id="id" oninput="value=value.replace(/[^\d]/g,'')" ></span>
+                <span class="lalalaspan">User Name:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt"  id="username" ></span>
+                <span class="lalalaspan">&nbsp&nbspSex:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt"  id="sex" ></span>
+            </p>
+            <p>
+                <span class="lalalaspan"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbspAge:&nbsp&nbsp&nbsp&nbsp<input type="text" class="inputt"  id="age" oninput="value=value.replace(/[^\d]/g,'')"></span>
+                <span class="lalalaspan"> &nbsp&nbsp&nbspPassword:&nbsp&nbsp&nbsp&nbsp<input type="text"  class="inputt" id="password" ></span>
+                <span class="lalalaspan"> Email:&nbsp&nbsp&nbsp&nbsp<input type="email" class="inputt"  id="email" ></span>
+            </p>
+        </div>
+        <div>
+            <label id="showerr">lalala</label>
+        </div>
+        <div id="btndiv">
+        <input type="button" class="btn" id="submitbtn" onclick="lalala2()" value="submit"/>
+        <input type="button" class="btn" id="clearbtn" onclick="clearlalala()" value="clear"/>
+        </div>
+    </div>
+    <table class="table" id="table" border="0" cellspacing="0" cellpadding="4" onclick="selectrow()">
+    </table>
+</div>
+
 
    <script>
        window.onload = function (){
            lalala();
+           $("#table").bootstrapTable('destroy');
+           lalala();
+
        }
+       var id = document.getElementById("id").value;
+       var age = document.getElementById("age").value;
+       var username = document.getElementById("username").value;
+       var email = document.getElementById("email").value;
+       var password = document.getElementById("password").value;
+       var sex = document.getElementById("sex").value;
+
 
         // function send() {
         //     $("#table tbody").html("");
@@ -126,6 +228,7 @@
 
 
         function lalala() {
+            var d = $("#table").bootstrapTable('destroy')
             var id = document.getElementById("id").value;
             var age = document.getElementById("age").value;
             var username = document.getElementById("username").value;
@@ -166,18 +269,24 @@
                 sidePagination : 'client',//server:服务器端分页|client：前端分页
                 pageSize : 3,//单页记录数
                 pageList : [1,10],//可选择单页记录数
-                showRefresh : true,//刷新按钮
+                showRefresh : false,//刷新按钮
+                clickToSelect:true,//点击选中
+                singleSelect:true,//允许单选
                 responseHandler: function (res) {
                     console.log(res)
                     return eval(res.data)
                 },
-                columns : [ {
+                columns : [
+                //     {
+                //     checkbox:true,//添加一列多选列
+                // },
+                    {
                     title : 'User ID',
                     field : 'id',
                     sortable : true
                 }, {
                     title : 'User Name',
-                    field : 'username',
+                    field : 'userName',
                     sortable : true
                 }, {
                     title : 'Email',
@@ -197,6 +306,7 @@
                     sortable : true
                 }]
             })
+
             // alert("lalala")这是用来测试点击是否有效果
         }
 
@@ -247,6 +357,80 @@
        //     };
        // }
 
-   </script>
+       function clearlalala() {
+
+           document.getElementById("id").value = "";
+           document.getElementById("age").value = "";
+           document.getElementById("username").value = "";
+           document.getElementById("email").value = "";
+           document.getElementById("password").value = "";
+           document.getElementById("sex").value = "";
+
+       }
+
+       function lalala2() {
+           var id = document.getElementById("id").value;
+           var age = document.getElementById("age").value;
+           var username = document.getElementById("username").value;
+           var email = document.getElementById("email").value;
+           var password = document.getElementById("password").value;
+           var sex = document.getElementById("sex").value;
+           let checkEmail = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+           let checkNumber = /[1-9][0-9]*$/;
+           var isSearch = true;
+           if (email != "") {
+               if (checkEmail.test(email)) {
+                   console.log("email true");
+                   console.log("321");document.getElementById("showerr").innerText = "";
+
+               }else{
+                   console.log("123");
+                   document.getElementById("showerr").innerText = "Email格式有误";
+                   document.getElementById("showerr").style = "color:#f00;";
+                   isSearch = false;
+                   console.log("ied" + isSearch);
+
+               }
+           }
+           console.log("email null" + email != "");
+           console.log("email check" + checkEmail.test(email));
+           console.log("email search" + isSearch);
+           if (id != "") {
+               if (checkNumber.test(id)) {
+                   document.getElementById("showerr").innerText = "";
+               }
+               else{
+                   document.getElementById("showerr").innerText = "id中包含非数字";
+                   document.getElementById("showerr").style = "color:#f00;";
+                   isSearch = false;
+               }
+           }
+           if (age != "") {
+               if (checkNumber.test(age)) {
+                   document.getElementById("showerr").innerText = "";
+               }
+               else {
+                   document.getElementById("showerr").innerText = "age中包含非数字";
+                   document.getElementById("showerr").style = "color:#f00;";
+                   isSearch = false;
+               }
+           }
+           console.log(isSearch);
+           if(isSearch) {
+               document.getElementById("btndiv").style = "margin:0px 0px 100px 0px;";
+               $("#table").bootstrapTable('destroy');
+               lalala();
+           }
+       }
+
+       function selectrow() {
+           var row=$("#table").bootstrapTable('getSelections');
+           alert(row[0])
+
+
+           // console.log("your select row is" + $('#table').bootstrapTable('getSelections'));
+       }
+
+    </script>
 </body>
 </html>
