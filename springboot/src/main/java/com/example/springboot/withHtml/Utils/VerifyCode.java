@@ -1,4 +1,4 @@
-package com.example.springboot.withHtml.others;
+package com.example.springboot.withHtml.Utils;
 
 
 import java.util.Random;

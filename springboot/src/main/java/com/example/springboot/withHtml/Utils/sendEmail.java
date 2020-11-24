@@ -1,4 +1,4 @@
-package com.example.springboot.withHtml.others;
+package com.example.springboot.withHtml.Utils;
 
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -9,7 +9,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 

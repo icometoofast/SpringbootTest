@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>showDataWithTable</title>
+    <style>
+
+
+        body,html{
+            margin:0px;
+            padding:0px;
+            width: 100%!important;
+            height: 100%!important;
+        }
+
+
+        #main{
+            width: 87%;
+            height:100%;
+            float: right;
+            margin:0px auto;
+        }
+
+
+        /*
+        左侧导航页面的css设置
+        */
+        .aside{
+            background: #f00;
+            width: 13%;
+            height: 100%;
+            float: left;
+        }
+
+        .nav{width: 100%;height: 100%;background: #263238;transition: all .3s;}
+        .nav a{display: block;overflow: hidden;padding-left: 10px;line-height: 46px;max-height: 46px;color: #ABB1B7;transition: all .3s;}
+        .nav a span{margin-left: 15px;}
+        .nav-item{position: relative;}
+        #aat{padding-inline-start: 0px}
+        .nav-item.nav-show{border-bottom: none;}
+        .nav-item ul{display: none;background: rgba(0,0,0,.1);}
+        .nav-item.nav-show ul{display: block;}
+        .nav-item>a:before{content: "";position: absolute;left: 0px;width: 2px;height: 46px;background: #34A0CE;opacity:0;transition: all .3s;}
+        .nav .nav-icon{font-size: 30px;position: absolute;margin-left:-1px;}
+        /* 此处修改导航图标 可自定义iconfont 替换*/
+        .icon_1::after{content: "\e62b";}
+        .icon_2::after{content: "\e669";}
+        .icon_3::after{content: "\e61d";}
+        /*---------------------*/
+        .nav-more{float:right;margin:18px 20px;font-size: 16px;transition: transform .3s;}
+        /* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+        .nav-more::after{content: ""; display: block; width: 20px; height: 10px; background: url("icon/toheadJT.png"),no-repeat; background-size:100%}
+        /*---------------------*/
+        .nav-show .nav-more{transform:rotate(180deg);}
+        .nav-show,.nav-item>a:hover{color: #FFF;background:rgba(0,0,0,.1);}
+        .nav-show>a:before,.nav-item>a:hover:before{opacity:1;}
+        .nav-item li:hover a{color: #FFF;background: rgba(0, 0, 0,.1);}
+
+        /* nav-mini */
+        .nav-mini.nav{width: 60px;}
+        .nav-mini.nav .nav-icon{/* margin-left:-2px; */}
+        .nav-mini.nav .nav-item>a span{display: none;}
+        .nav-mini.nav .nav-more{margin-right: -20px;}
+        .nav-mini.nav .nav-item ul{position: absolute;top:0px;left:60px;width: 180px;z-index: 99;background:#3C474C;overflow: hidden;}
+        .nav-mini.nav .nav-item:hover{background:rgba(255,255,255,.1);}
+        .nav-mini.nav .nav-item:hover .nav-item a{color:#FFF;}
+        .nav-mini.nav .nav-item:hover a:before{opacity:1;}
+        .nav-mini.nav .nav-item:hover ul{display: block;}
+        .nav-top{
+            width: 100%;
+            height: 12%;
+            background-color: #000;
+        }
+
+        #mini{
+            width: 100%;
+            height: 100%;
+            background-color: #0f0;
+        }
+        #logoo{
+            width: 100%;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        #logoo:hover{
+            cursor: pointer;
+        }
+
+        /*
+        下面是header相关的css
+         */
+        .header{
+            width: 100%;
+            height:12%;
+            border-bottom:1px solid #eee;
+            box-shadow: #888 0px 12px 9px 0px;
+        }
+
+        #userlabel{
+            float: right;
+            background-color: #fff;
+            font-size: 18.69px;
+            width: 20%;
+            padding:17.5px 17.5px;
+        }
+
+        #welcomelabel{
+            font-size: 43px;
+            width: 80%;
+            padding:20px 30px;
+        }
+
+        .titlelabel{
+            height: 100%;
+            text-align: left;
+        }
+        #userlabel:hover{
+            background-color: #ccc;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--<script src="https://blog-static.cnblogs.com/files/cj8988/jquery.dataTables.min.js"></script>-->
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+<div class="aside">
+    <div class="nav">
+        <div class="nav-top">
+            <div id="mini"  style="border-bottom:1px solid rgba(255,255,255,.1);background-color: #000"><img id="logoo" src="images/mainlogo.png" onclick="window.location.href='welcome.html'"></div>
+        </div>
+        <ul id="aat">
+            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>反叛军基地</span><i class='my-icon nav-more'></i></a>
+                <ul>
+                    <li><a href='javascript:;'><span>嘉定区基地</span></a></li>
+                    <li><a href='javascript:;'><span>浦东新区基地</span></a></li>
+                </ul>
+            </li>
+            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>石嘴山市</span><i class='my-icon nav-more'></i></a>
+                <ul>
+                    <li><a href='javascript:;'><span>大武口区</span></a></li>
+                    <li><a href='javascript:;'><span>惠农区</span></a></li>
+                    <li><a href='javascript:;'><span>平罗县</span></a></li>
+                </ul>
+            </li>
+            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>吴忠市</span><i class='my-icon nav-more'></i></a>
+                <ul>
+                    <li><a href='javascript:;'><span>利通区</span></a></li>
+                    <li><a href='javascript:;'><span>红寺堡区</span></a></li>
+                    <li><a href='javascript:;'><span>盐池县</span></a></li>
+                    <li><a href='javascript:;'><span>同心县</span></a></li>
+                    <li><a href='javascript:;'><span>青铜峡市</span></a></li>
+                </ul>
+            </li>
+            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>中卫市</span><i class='my-icon nav-more'></i></a>
+                <ul>
+                    <li><a href='javascript:;'><span>沙坡头区</span></a></li>
+                    <li><a href='javascript:;'><span>中宁县</span></a></li>
+                    <li><a href='javascript:;'><span>海原县</span></a></li>
+                </ul>
+            </li>
+            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>固原市</span><i class='my-icon nav-more'></i></a>
+                <ul>
+                    <li><a href='javascript:;'><span>原州区</span></a></li>
+                    <li><a href='javascript:;'><span>泾源县</span></a></li>
+                    <li><a href='javascript:;'><span>西吉县</span></a></li>
+                    <li><a href='javascript:;'><span>隆德县</span></a></li>
+                    <li><a href='javascript:;'><span>彭阳县</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="main">
+    <div class="header">
+        <label class="titlelabel" id="welcomelabel">欢迎来到反叛军总部</label>
+        <label class="titlelabel" id="userlabel">欢迎你，铁驭</label>
+    </div>
+</div>
+
+
+   <script>
+
+        /*
+        控制导航页面的文字信息
+        */
+       // $(function(){
+       //     var navList = [
+       //         {
+       //             "p" : "反叛军基地",
+       //             "c" : ["嘉定区基地","浦东新区基地"]
+       //         },
+       //         {
+       //             "p" : "石嘴山市",
+       //             "c" : ["大武口区","惠农区","平罗县"]
+       //         },
+       //         {
+       //             "p" : "吴忠市",
+       //             "c" : ["利通区","红寺堡区","盐池县","同心县","青铜峡市"]
+       //         },
+       //         {
+       //             "p" : "中卫市",
+       //             "c" : ["沙坡头区","中宁县","海原县"]
+       //         },
+       //         {
+       //             "p" : "固原市",
+       //             "c" : ["原州区","泾源县","西吉县","隆德县","彭阳县"]
+       //         }
+       //     ]
+       //     var navData = '';
+       //     for(let i=0;i<navList.length;i++){
+       //         navData+= "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>"+navList[i].p+"</span><i class='my-icon nav-more'></i></a><ul>"
+       //         for(let w=0;w<navList[i].c.length;w++){
+       //             navData+="<li><a href='javascript:;'><span>"+navList[i].c[w]+"</span></a></li>"
+       //         }
+       //         navData+="</ul></li>"
+       //     }
+       //      console.log(navData)
+       //     $('#aat').html(navData)
+       // })
+
+       /*
+       导航页的收缩与展开
+        */
+       $(function(){
+           // nav收缩展开
+           $('#aat').on('click','.nav-item>a',function(){
+               if (!$('.nav').hasClass('nav-mini')) {
+                   if ($(this).next().css('display') == "none") {
+                       //展开未展开
+                       $('.nav-item').children('ul').slideUp(300);
+                       $(this).next('ul').slideDown(300);
+                       $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
+                   }else{
+                       //收缩已展开
+                       $(this).next('ul').slideUp(300);
+                       $('.nav-item.nav-show').removeClass('nav-show');
+                   }
+               }
+           });
+           // 标志点击样式
+           $('#aat').on('click','.nav-item>ul>li',function(){
+               $('.nav-item>ul>li').css('background','none')
+               $(this).css('background','yellow')
+//  	$(this).siblings().css('background','none')
+           })
+           //nav-mini切换
+           $('#mini').on('click',function(){
+               if (!$('.nav').hasClass('nav-mini')) {
+                   $('.nav-item.nav-show').removeClass('nav-show');
+                   $('.nav-item').children('ul').removeAttr('style');
+                   $('.nav').addClass('nav-mini');
+               }else{
+                   $('.nav').removeClass('nav-mini');
+               }
+           });
+       });
+
+    </script>
+</body>
+</html>

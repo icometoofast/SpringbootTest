@@ -34,8 +34,8 @@
         }
 
         .nav{width: 100%;height: 100%;background: #263238;transition: all .3s;}
-        .nav a{display: block;overflow: hidden;padding-left: 20px;line-height: 46px;max-height: 46px;color: #ABB1B7;transition: all .3s;}
-        .nav a span{margin-left: 30px;}
+        .nav a{display: block;overflow: hidden;padding-left: 10px;line-height: 46px;max-height: 46px;color: #ABB1B7;transition: all .3s;}
+        .nav a span{margin-left: 15px;}
         .nav-item{position: relative;}
         #aat{padding-inline-start: 0px}
         .nav-item.nav-show{border-bottom: none;}
@@ -69,7 +69,7 @@
         .nav-mini.nav .nav-item:hover ul{display: block;}
         .nav-top{
             width: 100%;
-            height: 13%;
+            height: 12%;
             background-color: #000;
         }
 
@@ -82,6 +82,10 @@
             width: 100%;
             height: 100px;
             margin: 0 auto;
+        }
+
+        #logoo:hover{
+            cursor: pointer;
         }
 
        /*
@@ -238,7 +242,7 @@
 <div class="aside">
     <div class="nav">
         <div class="nav-top">
-            <div id="mini"  style="border-bottom:1px solid rgba(255,255,255,.1);background-color: #000"><img id="logoo" src="images/mainlogo.png" ></div>
+            <div id="mini"  style="border-bottom:1px solid rgba(255,255,255,.1);background-color: #000"><img id="logoo" src="images/mainlogo.png" onclick="window.location.href='welcome.html'"></div>
         </div>
         <ul id="aat">
 
@@ -455,8 +459,8 @@
        $(function(){
            var navList = [
                {
-                   "p" : "银川市",
-                   "c" : ["兴庆区","金凤区","西夏区","中宁县","灵武市","贺兰县"]
+                   "p" : "反叛军基地",
+                   "c" : ["嘉定区基地","浦东新区基地"]
                },
                {
                    "p" : "石嘴山市",

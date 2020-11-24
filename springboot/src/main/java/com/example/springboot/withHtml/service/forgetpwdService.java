@@ -2,7 +2,7 @@ package com.example.springboot.withHtml.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.springboot.withHtml.mapper.loginAndSignAndForgetpwdMapper;
-import com.example.springboot.withHtml.others.sendEmail;
+import com.example.springboot.withHtml.Utils.sendEmail;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
