@@ -1,6 +1,6 @@
 package com.example.springboot.ConnDBWithMybatis;
 
-import com.example.springboot.entities.User;
+import com.example.springboot.withHtml.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -122,6 +122,7 @@
 
 
 
+
     </style>
 
 </head>
@@ -147,36 +148,10 @@
                     <li><a href='javascript:;'><span>浦东新区基地</span></a></li>
                 </ul>
             </li>
-            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>石嘴山市</span><i class='my-icon nav-more'></i></a>
+            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>休息区</span><i class='my-icon nav-more'></i></a>
                 <ul>
-                    <li><a href='javascript:;'><span>大武口区</span></a></li>
-                    <li><a href='javascript:;'><span>惠农区</span></a></li>
-                    <li><a href='javascript:;'><span>平罗县</span></a></li>
-                </ul>
-            </li>
-            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>吴忠市</span><i class='my-icon nav-more'></i></a>
-                <ul>
-                    <li><a href='javascript:;'><span>利通区</span></a></li>
-                    <li><a href='javascript:;'><span>红寺堡区</span></a></li>
-                    <li><a href='javascript:;'><span>盐池县</span></a></li>
-                    <li><a href='javascript:;'><span>同心县</span></a></li>
-                    <li><a href='javascript:;'><span>青铜峡市</span></a></li>
-                </ul>
-            </li>
-            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>中卫市</span><i class='my-icon nav-more'></i></a>
-                <ul>
-                    <li><a href='javascript:;'><span>沙坡头区</span></a></li>
-                    <li><a href='javascript:;'><span>中宁县</span></a></li>
-                    <li><a href='javascript:;'><span>海原县</span></a></li>
-                </ul>
-            </li>
-            <li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>固原市</span><i class='my-icon nav-more'></i></a>
-                <ul>
-                    <li><a href='javascript:;'><span>原州区</span></a></li>
-                    <li><a href='javascript:;'><span>泾源县</span></a></li>
-                    <li><a href='javascript:;'><span>西吉县</span></a></li>
-                    <li><a href='javascript:;'><span>隆德县</span></a></li>
-                    <li><a href='javascript:;'><span>彭阳县</span></a></li>
+                    <li><a href='javascript:;'><span>视频播放</span></a></li>
+                    <li><a href='javascript:;'><span>音频播放</span></a></li>
                 </ul>
             </li>
         </ul>
@@ -188,48 +163,55 @@
         <label class="titlelabel" id="welcomelabel">欢迎来到反叛军总部</label>
         <label class="titlelabel" id="userlabel">欢迎你，铁驭</label>
     </div>
+    <div id="slidershow" class="carousel slide" data-ride="carousel" style="height: 88%">
+    <!--  设置图片轮播计数器   -->
+        <ol class="carousel-indicators">
+            <li class="active" data-traget="#slidershow" data-slide-to="0"/>
+            <li data-ride="slidershow" data-slide-to="1"/>
+            <li data-ride="slidershow" data-slide-to="2"/>
+        </ol>
+        <!-- 设置轮播图片 -->
+        <div class="carousel-inner" style="height: 100%">
+            <div class="item active"  style="height: 100%">
+                <a href="#" style="height: 100%">
+                    <img src="images/picture1.jpeg" style="height:100%;margin:0px auto;">
+                </a>
+                <div class="carousel-caption">
+                    <h3>title</h3>
+                    <p>miaoshu</p>
+                </div>
+            </div>
+            <div class="item" style="height: 100%" >
+                <a href="#"  style="height: 100%">
+                    <img src="images/picture2.jpg" style=" height: 100%;margin:0px auto;">
+                </a>
+                <div class="carousel-caption">
+                    <h3>title</h3>
+                    <p>miaoshu</p>
+                </div>
+            </div>
+            <div class="item" style="height: 100%" >
+                <a href="#"  style="height: 100%">
+                    <img src="images/picture3.jpg" style=" height: 100%;margin:0px auto;">
+                </a>
+                <div class="carousel-caption">
+                    <h3>title</h3>
+                    <p>miaoshu</p>
+                </div>
+            </div>
+        </div>
+    <!--  设置轮播图片控制器  -->
+        <a class="left carousel-control" href="#slidershow" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#slidershow" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
 </div>
 
 
    <script>
-
-        /*
-        控制导航页面的文字信息
-        */
-       // $(function(){
-       //     var navList = [
-       //         {
-       //             "p" : "反叛军基地",
-       //             "c" : ["嘉定区基地","浦东新区基地"]
-       //         },
-       //         {
-       //             "p" : "石嘴山市",
-       //             "c" : ["大武口区","惠农区","平罗县"]
-       //         },
-       //         {
-       //             "p" : "吴忠市",
-       //             "c" : ["利通区","红寺堡区","盐池县","同心县","青铜峡市"]
-       //         },
-       //         {
-       //             "p" : "中卫市",
-       //             "c" : ["沙坡头区","中宁县","海原县"]
-       //         },
-       //         {
-       //             "p" : "固原市",
-       //             "c" : ["原州区","泾源县","西吉县","隆德县","彭阳县"]
-       //         }
-       //     ]
-       //     var navData = '';
-       //     for(let i=0;i<navList.length;i++){
-       //         navData+= "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>"+navList[i].p+"</span><i class='my-icon nav-more'></i></a><ul>"
-       //         for(let w=0;w<navList[i].c.length;w++){
-       //             navData+="<li><a href='javascript:;'><span>"+navList[i].c[w]+"</span></a></li>"
-       //         }
-       //         navData+="</ul></li>"
-       //     }
-       //      console.log(navData)
-       //     $('#aat').html(navData)
-       // })
 
        /*
        导航页的收缩与展开

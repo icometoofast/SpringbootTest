@@ -2,7 +2,7 @@ package com.example.springboot.test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.springboot.ConnDBWithMybatis.CdbwmMapper;
-import com.example.springboot.entities.User;
+import com.example.springboot.withHtml.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

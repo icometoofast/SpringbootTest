@@ -1,9 +1,8 @@
 package com.example.springboot.ConnDBWithMybatis;
 
-import com.example.springboot.entities.User;
+import com.example.springboot.withHtml.entities.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
