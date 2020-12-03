@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 //TODO 页面适配手机浏览器
 
 @RestController
+
 public class LoginController {
 
     @Autowired
